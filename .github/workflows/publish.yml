@@ -1,0 +1,31 @@
+on:
+    push:
+        tags:
+            - 'v*'
+
+name: Publish Datapacks
+
+jobs:
+    zip:
+        name: Zip Datapacks
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout Code
+              uses: actions/checkout@master
+            
+            - name: Zip Datapacks
+              run: |
+                zip -r stone_conversions.zip stone_conversions/
+
+            - name: Create Release
+              id: create_release
+              uses: actions/create-release@latest
+              env:
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              with:
+                tag_name: ${{ github.ref }}
+                release_name: Datapack Release ${{ github.ref }}
+                body: Datapacks for the Minecraft version based on the first three numbers of the tag i.e. for 1.21.9.x the version is 1.21.9
+                draft: true
+                prerelease: false
