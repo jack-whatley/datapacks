@@ -19,13 +19,11 @@ jobs:
                 zip -r stone_conversions.zip stone_conversions/
 
             - name: Create Release
-              id: create_release
-              uses: actions/create-release@latest
-              env:
-                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              uses: softprops/action-gh-release@v2
               with:
-                tag_name: ${{ github.ref }}
-                release_name: Datapack Release ${{ github.ref }}
+                name: Datapack Release ${{ github.ref }}
                 body: Datapacks for the Minecraft version based on the first three numbers of the tag i.e. for 1.21.9.x the version is 1.21.9
                 draft: true
                 prerelease: false
+                files: |
+                  *.zip
