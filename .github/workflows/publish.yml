@@ -25,7 +25,7 @@ jobs:
               with:
                 name: Datapack Release ${{ github.ref }}
                 body: Datapacks for the Minecraft version based on the first three numbers of the tag i.e. for 1.21.9.x the version is 1.21.9
-                draft: true
+                draft: false
                 prerelease: false
                 files: |
                   *.zip
