@@ -18,12 +18,12 @@ jobs:
               run: chmod +x ./zip_dirs.sh
             
             - name: Zip Datapacks
-              run: ./zip_dirs.sh
+              run: ./zip_dirs.sh ${{ github.ref_name }}
 
             - name: Create Release
               uses: softprops/action-gh-release@v2
               with:
-                name: Datapack Release ${{ github.ref }}
+                name: Datapack Release ${{ github.ref_name }}
                 body: Datapacks for the Minecraft version based on the first three numbers of the tag i.e. for 1.21.9.x the version is 1.21.9
                 draft: false
                 prerelease: false

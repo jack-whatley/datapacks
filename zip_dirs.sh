@@ -9,7 +9,7 @@ for d in */ ; do
 
     echo "Zipping Directory $d"
 
-    zip -r "../${d///}.zip" *
+    zip -r "../${d///} $1.zip" *
 
     cd ..
 done
