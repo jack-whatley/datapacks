@@ -13,10 +13,12 @@ jobs:
         steps:
             - name: Checkout Code
               uses: actions/checkout@master
+
+            - name: Set Script Permissions
+              run: chmod +x ./zip_dirs.sh
             
             - name: Zip Datapacks
-              run: |
-                zip -r stone_conversions.zip stone_conversions/
+              run: ./zip_dirs.sh
 
             - name: Create Release
               uses: softprops/action-gh-release@v2
